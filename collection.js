@@ -25,10 +25,11 @@ define(["chaplin", "./model", "underscore"], function(Chaplin, Model, _) {
 		 */
 		setActive: function(model, options) {
 			_.invoke(this.without(model), "set", "active", false, options);
+			if(!model) return;
 			options = options || {};
-			if(options.silent !== false) this.trigger("active", model, options);
 			if(model.get('active')) return model;
 			model.set("active", true, options);
+			if(options.silent !== false) this.trigger("active", model, options);
 			return model;
 		},
 		/**
