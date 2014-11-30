@@ -4,6 +4,7 @@ define([
 ], function(Chaplin, _) {
   return Chaplin.Model.extend({
     idAttribute: 'Id',
+    activeAttribute: 'active',
     relationships: {},
     defaults: {},
     initialize: function(attrs, options) {
@@ -61,17 +62,17 @@ define([
      */
     setActive: function(options) {
       if (!this.collection) {
-        this.set("active", true, options);
+        this.set(this.activeAttribute, true, options);
         return this;
       }
       return this.collection.setActive(this, options);
     },
     isActive: function() {
-      return this.get("active") ? true : false;
+      return this.get(this.activeAttribute) ? true : false;
     },
     toggleActive: function(options) {
-      var active = this.get("active");
-      return this.set("active", !active, options);
+      var active = this.get(this.activeAttribute);
+      return this.set(this.activeAttribute, !active, options);
     },
     inc: function(attribute, value) {
       return this.set(attribute, this.get(attribute) + value);

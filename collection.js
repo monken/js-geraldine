@@ -24,11 +24,12 @@ define(["chaplin", "./model", "underscore"], function(Chaplin, Model, _) {
 		 * @return {App.Model}	returns `model`
 		 */
 		setActive: function(model, options) {
-			_.invoke(this.without(model), "set", "active", false, options);
+			var attribute = this.model.prototype.activeAttribute;
+			_.invoke(this.without(model), "set", attribute, false, options);
 			if(!model) return;
 			options = options || {};
-			if(model.get('active')) return model;
-			model.set("active", true, options);
+			if(model.get(attribute)) return model;
+			model.set(attribute, true, options);
 			if(options.silent !== false) this.trigger("active", model, options);
 			return model;
 		},
