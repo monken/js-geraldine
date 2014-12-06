@@ -72,11 +72,6 @@ define(["chaplin", "./model", "underscore"], function(Chaplin, Model, _) {
 		deflate: function() {
 			return _.filter(this.map(function(model) { return model.deflate() }), _.identity);
 		},
-		newModel: function(attrs, options) {
-			var model = new this.model(attrs, options);
-			model.collection = this;
-			return model;
-		},
 		sync: function(method, model, options) {
 			var defaultStore = options.store || this.defaultStore || _.keys(this.store)[0];
 			return this.store[defaultStore].sync.apply(this.store[defaultStore], arguments);

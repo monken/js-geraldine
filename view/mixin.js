@@ -105,5 +105,19 @@ define(['./../model', 'chaplin'], function(Model, Chaplin) {
         }
       }
     },
+    bubbleEvents: [],
+    subview: function(name, view) {
+      var ret = Chaplin.View.prototype.subview.apply(this, arguments);
+      if(name && view) {
+        this.bubbleEvents.forEach(function(e) {
+          view.on(e, function() {
+            var args = [].slice.call(arguments);
+            args.unshift(e);
+            this.trigger.apply(this, args);
+          }, this);
+        }, this);
+      }
+      return ret;
+    }
   };
 });

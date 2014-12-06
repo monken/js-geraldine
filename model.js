@@ -11,6 +11,8 @@ define([
       attrs = (attrs || {});
       options = (options || {});
 
+      this.initDefaults(attrs, options);
+
       for (var adapter in this.store) {
         if (_.isPlainObject(this.store[adapter])) {
           var args = _.extend({
@@ -35,6 +37,28 @@ define([
           ));
       }
     },
+    initDefaults: function() {
+      for (var key in this.defaults) {
+        var def = this.defaults[key];
+        if (_.isArray(def)) {
+          var clone = def.slice();
+          var func = clone.pop();
+          this.on('change', function(model) {
+            var changes = model.changedAttributes(clone);
+            var values = [];
+            for (var attr in clone) {
+              values.push(changes[clone[attr]]);
+            }
+            this.set(key, func.call(this, values));
+          }, this);
+          var values = [];
+          for (var attr in clone) {
+            values.push(this.get(attr));
+          }
+          this.set(key, func.call(this, values));
+        }
+      }
+    },
     set: function(key, val, options) {
       var attr, attrs, unset, changes, silent, changing, prev, current;
       if (key == null) return this;
@@ -49,7 +73,7 @@ define([
       for (var rel in this.relationships) {
         var collection = this.get(rel);
         if (!attrs[rel] || !collection) continue;
-        if(_.isArray(collection) || _.isPlainObject(collection)) continue;
+        if (_.isArray(collection) || _.isPlainObject(collection)) continue;
         this.get(rel).set(attrs[rel], options);
         delete attrs[rel];
       }
@@ -116,7 +140,7 @@ define([
       return data;
     },
     dispose: function() {
-      for(var relationship in this.relationships) {
+      for (var relationship in this.relationships) {
         this.get(relationship).dispose();
       }
       Chaplin.Model.prototype.dispose.apply(this, arguments);
