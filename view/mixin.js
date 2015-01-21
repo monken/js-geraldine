@@ -1,4 +1,4 @@
-define(['./../model', 'chaplin'], function(Model, Chaplin) {
+define(['./../model', 'chaplin', 'velocity'], function(Model, Chaplin, Velocity) {
   return {
     config: {},
     initialize: function(options) {
@@ -18,41 +18,41 @@ define(['./../model', 'chaplin'], function(Model, Chaplin) {
     },
     onLayout: {
       fill: function($el, value) {
-        $el.animate({
-          svgFill: value
+        $el.css({
+          fill: value
         }, {
           queue: false
         });
       },
       opacity: function($el, value) {
-        $el.animate({
-          svgOpacity: value
+        $el.css({
+          opacity: value
         }, {
           queue: false
         });
       },
       height: function($el, value) {
-        $el.find("> rect").animate({
-          svgHeight: value
+        Velocity($el.find("> rect"), {
+          height: value
         }, {
           queue: false
         });
-        $el.find("> text.bottom").animate({
-          svgY: value - 10
+        Velocity($el.find("> text.bottom"), {
+          y: value - 10
         }, {
           queue: false
         });
       },
       y: function($el, value) {
-        $el.animate({
-          svgTransform: "translate(" + this.get("x") + ", " + value + ")"
+        Velocity($el, {
+          transform: "translate(" + this.get("x") + ", " + value + ")"
         }, {
           queue: false
         });
       },
       x: function($el, value) {
-        $el.animate({
-          svgTransform: "translate(" + value + "," + this.get("y") + ")"
+        Velocity($el, {
+          transform: "translate(" + value + "," + this.get("y") + ")"
         }, {
           queue: false
         });

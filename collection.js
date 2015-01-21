@@ -84,7 +84,6 @@ define(["chaplin", "./model", "underscore"], function(Chaplin, Model, _) {
 		},
 		dispose: function() {
 			Chaplin.Collection.prototype.dispose.apply(this, arguments);
-			console.log('disposing collection', this);
 			this._promise = null;
 		}
 	});
