@@ -1,4 +1,6 @@
 {
+  "name": "geraldine",
+  "version": "1.0.0",
   "dependencies": {
     "chaplin": "^1.0.1"
   }
