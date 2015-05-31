@@ -1,4 +1,11 @@
-define([
+(function(dependencies, definition) {
+  if (typeof module === 'object' && module && module.exports) {
+      dependencies = dependencies.map(require);
+      module.exports = definition.apply(context, dependencies);
+  } else if (typeof require === 'function') {
+    define((dependencies || []), definition);
+  }
+})([
   'chaplin',
   'underscore',
 ], function(Chaplin, _) {
@@ -102,7 +109,7 @@ define([
       return this.set(attribute, this.get(attribute) + value);
     },
     get: function(attribute) {
-      var value = Backbone.Model.prototype.get.apply(this, arguments);
+      var value = Chaplin.Model.prototype.get.apply(this, arguments);
       var def = this.defaults[attribute];
       if (_.isFunction(def) && def === value) {
         return _.bind(def, this)();

@@ -2,6 +2,23 @@
   "name": "geraldine",
   "version": "1.0.0",
   "dependencies": {
-    "chaplin": "^1.0.1"
-  }
+    "chaplin": "^1.0.1",
+    "underscore": "*"
+  },
+  "version": "0.0.1",
+  "main": "geraldine.js",
+  "devDependencies": {
+    "mocha": "*",
+    "lodash": "*",
+    "bluebird": "*"
+    },
+  "scripts": {
+    "test": "mocha t/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "monken/js-geraldine"
+  },
+  "author": "Moritz Onken <onken@netcubed.de>",
+  "license": "MIT"
 }
