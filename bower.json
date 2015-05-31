@@ -1,18 +1,18 @@
 {
   "name": "geraldine",
-  "version": "0.0.1",
   "dependencies": {
     "chaplin": "^1.0.1",
     "underscore": "*",
     "velocity": "^0.7.2"
   },
+  "version": "0.0.1",
   "main": "geraldine.js",
   "devDependencies": {
     "mocha": "*",
     "lodash": "*",
     "bluebird": "*",
     "jsdox": "*"
-  },
+    },
   "scripts": {
     "test": "mocha t/",
     "docs": "jsdox -i index . && cat output/{0,collection}.md > README.md"

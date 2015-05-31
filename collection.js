@@ -1,3 +1,10 @@
+/**
+ * @title Collection
+ * @license MIT
+ * @author Moritz Onken
+ * @class Collection
+*/
+
 (function(dependencies, definition) {
   if (typeof module === 'object' && module && module.exports) {
       dependencies = dependencies.map(require);
@@ -23,12 +30,12 @@
       }
     },
     /**
-     * Sets the `active` attribute of all models but `model` to `false`.
+     * Unsets the `activeAttribute` attribute on all models and sets it on the `model` passed as first argument.
      * Triggers the `active` event with the `model` passed as first parameter.
      *
-     * @param {App.Model} model   Model that is set to active
-     * @param {Object} options 	Options that are passed to `set` such as `{ silent: true }`
-     * @return {App.Model}	returns `model`
+     * @param {Model} model   Model that is set to active
+     * @param {Object} [[options]] 	Options that are passed to `set` such as `{ silent: true }`
+     * @return {Model}
      */
     setActive: function(model, options) {
       var attribute = this.model.prototype.activeAttribute;
@@ -41,15 +48,20 @@
       return model;
     },
     /**
-     * Get active model of collection
+     * Returns the (first) `active` model or `null` if there are no active models.
      *
-     * @return {App.Model}	Returns a model of one is active.
+     * @return {Model}
      */
     getActive: function() {
       return this.find(function(model) {
         return model.isActive()
       });
     },
+    /**
+     * Returns the last model in the collection.
+     *
+     * @return {Model}
+     */
     getLast: function() {
       return this.at(this.length - 1);
     },
@@ -87,9 +99,21 @@
       var defaultStore = options.store || this.defaultStore || _.keys(this.store)[0];
       return this.store[defaultStore].sync.apply(this.store[defaultStore], arguments);
     },
+    /**
+     * Invoke `save` on all models of the collection.
+     *
+     * @return {Models}
+     */
     save: function(attrs, options) {
       return this.invoke("save", attrs, options);
     },
+
+    /**
+     * Creates a clone of the collection by copying the models in a new array.
+     * Changes to the new collection will not affect the original collection.
+     *
+     * @return {Collection}
+     */
     deepClone: function() {
       return new this.constructor(this.models.slice(0));
     },

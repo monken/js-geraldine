@@ -87,9 +87,10 @@
       return Chaplin.Model.prototype.set.apply(this, [attrs, options]);
     },
     /**
-     * Calls `setActive(model, options)` on the collection.
+     * Calls `setActive(model, options)` on the collection if the model is part of a collection.
+     * Otherwise it will set the model to `active`.
      *
-     * @param {options} options
+     * @param {Object} [[options]] e.g. `{ silent: true }`
      */
     setActive: function(options) {
       if (!this.collection) {
@@ -98,6 +99,11 @@
       }
       return this.collection.setActive(this, options);
     },
+    /**
+     * Returns true if the model is `active`.
+     *
+     * @param {Boolean}
+     */
     isActive: function() {
       return this.get(this.activeAttribute) ? true : false;
     },
@@ -151,7 +157,6 @@
         this.get(relationship).dispose();
       }
       Chaplin.Model.prototype.dispose.apply(this, arguments);
-      console.log('disposing model', this);
     }
   });
 });
