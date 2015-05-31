@@ -3,7 +3,7 @@
   "dependencies": {
     "chaplin": "^1.0.1",
     "underscore": "*",
-    "velocity": "^0.7.2"
+    "velocity": "^1.2.0"
   },
   "version": "0.0.1",
   "main": "geraldine.js",
