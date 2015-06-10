@@ -8,14 +8,15 @@
   },
   "main": "geraldine.js",
   "devDependencies": {
-    "mocha": "*",
-    "lodash": "*",
     "bluebird": "*",
-    "jsdox": "*"
+    "jsdox": "*",
+    "lodash": "*",
+    "markdown-toc": "^0.11.4",
+    "mocha": "*"
   },
   "scripts": {
     "test": "mocha t/",
-    "docs": "jsdox -i index . && cat output/{0,collection}.md > README.md"
+    "docs": "jsdox -i index . && cat output/{0,collection}.md LICENSE > README.md && doctoc --title Contents README.md"
   },
   "repository": {
     "type": "git",
