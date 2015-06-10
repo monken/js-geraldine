@@ -9,7 +9,8 @@
   "main": "geraldine.js",
   "devDependencies": {
     "bluebird": "*",
-    "jsdox": "*",
+    "doctoc": "^0.13.0",
+    "jsdox": "^0.4.9",
     "lodash": "*",
     "markdown-toc": "^0.11.4",
     "mocha": "*"

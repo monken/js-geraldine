@@ -6,16 +6,18 @@ Some improvements to [Chaplin](http://chaplinjs.org/) and [Backbone.JS](http://b
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+Contents
 
-- [Class: Collection](#class-collection)
-  - [Collection.setActive(model, [options])](#collectionsetactivemodel-options)
-  - [Collection.getActive()](#collectiongetactive)
-  - [Collection.getLast()](#collectiongetlast)
-  - [Collection.save()](#collectionsave)
-  - [Collection.deepClone()](#collectiondeepclone)
+- [Global](#global)
+  - [Class: Collection](#class-collection)
+    - [Collection.setActive(model, [options])](#collectionsetactivemodel-options)
+    - [Collection.getActive()](#collectiongetactive)
+    - [Collection.getLast()](#collectiongetlast)
+    - [Collection.save()](#collectionsave)
+    - [Collection.deepClone()](#collectiondeepclone)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+# Global
 
 
 
@@ -26,7 +28,7 @@ Some improvements to [Chaplin](http://chaplinjs.org/) and [Backbone.JS](http://b
 ## Class: Collection
 
 
-### Collection.setActive(model, [options])
+### Collection.setActive(model, [options]) 
 
 Unsets the `activeAttribute` attribute on all models and sets it on the `model` passed as first argument.
 Triggers the `active` event with the `model` passed as first parameter.
@@ -39,25 +41,25 @@ Triggers the `active` event with the `model` passed as first parameter.
 
 **Returns**: `Model`
 
-### Collection.getActive()
+### Collection.getActive() 
 
 Returns the (first) `active` model or `null` if there are no active models.
 
 **Returns**: `Model`
 
-### Collection.getLast()
+### Collection.getLast() 
 
 Returns the last model in the collection.
 
 **Returns**: `Model`
 
-### Collection.save()
+### Collection.save() 
 
 Invoke `save` on all models of the collection.
 
 **Returns**: `Models`
 
-### Collection.deepClone()
+### Collection.deepClone() 
 
 Creates a clone of the collection by copying the models in a new array.
 Changes to the new collection will not affect the original collection.
