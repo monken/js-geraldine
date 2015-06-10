@@ -9,6 +9,7 @@
   return {
     config: {},
     initialize: function(options) {
+      options = options || {};
       this.config = options.config || this.config;
       if (_.isPlainObject(this.config)) {
         this.config = new Model(this.config);
