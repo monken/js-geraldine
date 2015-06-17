@@ -15,6 +15,8 @@ Contents
     - [Collection.getLast()](#collectiongetlast)
     - [Collection.save()](#collectionsave)
     - [Collection.deepClone()](#collectiondeepclone)
+- [Global](#global-1)
+  - [Class: View](#class-view)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 # Global
@@ -66,6 +68,49 @@ Changes to the new collection will not affect the original collection.
 
 **Returns**: `Collection`
 
+
+
+* * *
+
+
+
+
+
+
+
+
+
+
+# Global
+
+
+
+
+
+* * *
+
+## Class: View
+
+
+**bindings**: `Object` , The `bindings` attribute defines data bindings to html elements. Bindings can contain
+a transformation function to modify the original value. Bindings also work for relationship
+attributes. If the relationship is a collection, the element will be updated if any of the
+add, remove or reset events are triggered on the collection.
+
+Bindings will be initialized when the view is rendered.
+
+```
+View.extend({
+  bindings: {
+    // bind name attribute to content of element with class 'name'
+    '.name': 'name',
+    // format 'dateOfBirth' attribute
+    '.born': ['dateOfBirth', function(value) { return moment(value).format('ll') }],
+    // update count of children
+    '.children': ['children', function(value) { return children.length }],
+  }
+});
+```
 
 
 * * *

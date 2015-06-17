@@ -102,7 +102,7 @@
     /**
      * Invoke `save` on all models of the collection.
      *
-     * @return {Models}
+     * @return {Model[]}
      */
     save: function(attrs, options) {
       return this.invoke("save", attrs, options);
