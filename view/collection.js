@@ -1,11 +1,4 @@
-(function(dependencies, definition) {
-  if (typeof module === 'object' && module && module.exports) {
-      dependencies = dependencies.map(require);
-      module.exports = definition.apply(context, dependencies);
-  } else if (typeof require === 'function') {
-    define((dependencies || []), definition);
-  }
-})(["chaplin", "./../view", "./mixin", "./../model", "./../collection"], function(Chaplin, ItemView, Mixin, Model, Collection) {
+define(["chaplin", "./../view", "./mixin", "./../model", "./../collection"], function(Chaplin, ItemView, Mixin, Model, Collection) {
   return Chaplin.CollectionView.extend(Mixin).extend({
     animationDuration: 0,
     itemView: ItemView,

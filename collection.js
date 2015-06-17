@@ -5,14 +5,7 @@
  * @class Collection
 */
 
-(function(dependencies, definition) {
-  if (typeof module === 'object' && module && module.exports) {
-      dependencies = dependencies.map(require);
-      module.exports = definition.apply(context, dependencies);
-  } else if (typeof require === 'function') {
-    define(dependencies, definition);
-  }
-})(["chaplin", "./model", "underscore"], function(Chaplin, Model, _) {
+define(["chaplin", "./model", "underscore"], function(Chaplin, Model, _) {
 	return Chaplin.Collection.extend({
     model: Model,
     _promise: null,
