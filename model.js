@@ -129,8 +129,13 @@ define([
     },
     getStore: function(store) {
       var defaultStore = store || this.defaultStore || _.keys(this.store)[0];
-      if (!defaultStore && this.collection) defaultStore = this.collection.defaultStore || _.keys(this.collection.store)[0];
-      return defaultStore ? this.store[defaultStore] : null;
+      if (defaultStore) {
+        return this.store[defaultStore];
+      } else if (this.collection) {
+        defaultStore = this.collection.defaultStore || _.keys(this.collection.store)[0];
+        if (defaultStore) return this.collection.store[defaultStore];
+      }
+      return null;
     },
     sync: function(method, model, options) {
       var store = this.getStore(options.store);
