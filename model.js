@@ -129,12 +129,12 @@ define([
     },
     getStore: function(store) {
       var defaultStore = store || this.defaultStore || _.keys(this.store)[0];
+      if (!defaultStore && this.collection) defaultStore = this.collection.defaultStore || _.keys(this.collection.store)[0];
       return defaultStore ? this.store[defaultStore] : null;
     },
     sync: function(method, model, options) {
       var store = this.getStore(options.store);
-      if (!store)
-        return this.collection.sync.apply(this.collection, arguments);
+      if (!store) throw 'no store associated with model or collection';
       return store.sync.apply(store, arguments);
     },
     toJSON: function() {
