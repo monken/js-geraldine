@@ -148,6 +148,10 @@ define([
         if (_.isFunction(data[key]))
           data[key] = _.bind(data[key], this)();
       }
+      for (var relationship in this.relationships) {
+        if(!this.get(relationship)) return;
+        data[relationship] = this.get(relationship).toJSON();
+      }
       return data;
     },
     dispose: function() {
